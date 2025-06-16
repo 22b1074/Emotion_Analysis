@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/morphocast.html"
+      "dest": "/morphcast.html"
     }
   ]
 }
