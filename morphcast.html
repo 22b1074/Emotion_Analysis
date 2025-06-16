@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MorphCast Emotion AI SDK Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Optional: Add MorphCast tools for compatibility/camera privacy popups -->
+  <meta name="mphtools-feature" content="compatibilityUI, cameraPrivacyPopup, compatibilityAutoCheck">
+</head>
+<body>
+  <h2>MorphCast Emotion AI SDK Demo</h2>
+  <p>Open the browser console to see real-time emotion analysis results.</p>
+
+  <!-- Load MorphCast tools (optional but recommended for UI/compatibility) -->
+  <script src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
+  <!-- Load MorphCast AI SDK -->
+  <script src="https://ai-sdk.morphcast.com/v1.16/ai-sdk.js"></script>
+  <script>
+    CY.loader()
+      .licenseKey("apbc120d2e678de61be3f609292f3b300bc74e8bbf32bd") // <-- Replace with your license key
+      .addModule(CY.modules().FACE_EMOTION.name)
+      .addModule(CY.modules().FACE_AROUSAL_VALENCE.name)
+      .load()
+      .then(({ start, stop }) => start());
+
+    // Listen for emotion analysis results
+    window.addEventListener(CY.modules().FACE_AROUSAL_VALENCE.eventName, (evt) => {
+  console.log('Arousal/Valence/Affects:', evt.detail.output);
+});
+
+  </script>
+</body>
+</html>
